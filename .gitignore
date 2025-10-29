@@ -1,0 +1,6 @@
+# Ignorar entorno virtual y caché
+.venv/
+__pycache__/
+*.db
+.env
+.idea/
