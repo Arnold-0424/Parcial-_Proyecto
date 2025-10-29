@@ -1,6 +1,8 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
 from datetime import date
+from models.relacion import ProyectoEmpleadoLink
+
 
 # Evita importaciones circulares
 from typing import TYPE_CHECKING

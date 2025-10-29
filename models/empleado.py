@@ -1,6 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
-
+from models.relacion import ProyectoEmpleadoLink
 
 class Empleado(SQLModel, table=True):
     """
