@@ -40,23 +40,25 @@ Incluye validaciones, relaciones N:M, y documentación automática con Swagger U
 ---
 
 ## ⚙️ Estructura del proyecto
+
+```bash
 Parcial_Proyecto/
 │
-├── main.py # Punto de entrada principal
-├── database.py # Conexión y creación de tablas
+├── main.py                     # Punto de entrada principal
+├── database.py                 # Conexión y creación de tablas
 │
-├── models/ # Modelos SQLModel
-│ ├── empleado.py # Modelo de empleados
-│ ├── proyecto.py # Modelo de proyectos
-│ └── relacion.py # Relación N:M entre ambos
+├── models/                     # Modelos SQLModel
+│   ├── empleado.py             # Modelo de empleados
+│   ├── proyecto.py             # Modelo de proyectos
+│   └── relacion.py             # Relación N:M entre ambos
 │
-├── routers/ # Rutas organizadas por entidad
-│ ├── empleados.py # Endpoints para empleados
-│ ├── proyectos.py # Endpoints para proyectos
-│ └── asignaciones.py # Endpoints para asignaciones
+├── routers/                    # Rutas organizadas por entidad
+│   ├── empleados.py            # Endpoints para empleados
+│   ├── proyectos.py            # Endpoints para proyectos
+│   └── asignaciones.py         # Endpoints para asignaciones
 │
 └── utils/
-└── validaciones.py # Validaciones personalizadas
+    └── validaciones.py         # Validaciones personalizadas
 
 
 ---
