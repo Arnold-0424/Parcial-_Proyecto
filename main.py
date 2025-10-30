@@ -1,9 +1,7 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from database import create_db_and_tables
-from routers import empleados
-from routers import proyectos
-
+from routers import empleados, proyectos, asignaciones
 
   # Cambiamos el parámetro 'app' a 'app_instance'
 @asynccontextmanager
@@ -23,6 +21,7 @@ app = FastAPI(
 
 app.include_router(empleados.router)
 app.include_router(proyectos.router)
+app.include_router(asignaciones.router)
 
 @app.get("/")
 def home():
