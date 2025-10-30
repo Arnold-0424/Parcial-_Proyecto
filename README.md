@@ -110,4 +110,6 @@ python -m venv .venv
 
 "Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass"
 
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
 pip install -r requirements.txt
