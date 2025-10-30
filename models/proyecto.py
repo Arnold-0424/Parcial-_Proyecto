@@ -1,49 +1,22 @@
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional, List
-from datetime import date
-from models.relacion import ProyectoEmpleadoLink
+from typing import Optional, List, TYPE_CHECKING # noqa: F401
 
-
-# Evita importaciones circulares
-from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from models.empleado import Empleado
 
-
 class Proyecto(SQLModel, table=True):
-
     id: Optional[int] = Field(default=None, primary_key=True)
-    nombre: str = Field(index=True, nullable=False, unique=True, description="Nombre único del proyecto")
-    descripcion: str = Field(nullable=False, description="Descripción breve del proyecto")
-    presupuesto: float = Field(gt=0, description="Presupuesto asignado al proyecto en COP")
-    estado: str = Field(default="En curso", description="Estado actual del proyecto")
-    fecha_inicio: date = Field(default_factory=date.today, description="Fecha de creación del proyecto")
-
-    # Relación 1:N con Empleado (gerente)
+    nombre: str
+    descripcion: str
+    presupuesto: float
+    estado: bool = Field(default=True)  # 👈 aquí el cambio
     gerente_id: Optional[int] = Field(default=None, foreign_key="empleado.id")
 
-    # Relaciones
-    gerente: Optional["Empleado"] = Relationship(back_populates="proyectos_dirigidos")  # gerente
-    empleados: List["ProyectoEmpleadoLink"] = Relationship(back_populates="proyecto")  # relación N:M
+    gerente: Optional["Empleado"] = Relationship(back_populates="proyectos")
 
-    def __repr__(self):
-        return f"<Proyecto(nombre={self.nombre}, estado={self.estado}, presupuesto={self.presupuesto})>"
-
-
-# Modelo para creación de proyectos
 class ProyectoCreate(SQLModel):
     nombre: str
     descripcion: str
     presupuesto: float
-    estado: Optional[str] = "En curso"
+    estado: bool = True  # 👈 también aquí
     gerente_id: Optional[int] = None
-
-
-# Modelo para lectura de proyectos
-class ProyectoRead(SQLModel):
-    id: int
-    nombre: str
-    descripcion: str
-    presupuesto: float
-    estado: str
-    gerente_id: Optional[int]
