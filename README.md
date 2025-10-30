@@ -101,5 +101,6 @@ Parcial_Proyecto/
 ---
 
 git clone https://github.com/tuusuario/gestion_proyectos_fastapi.git
+
 cd gestion_proyectos_fastapi
 
