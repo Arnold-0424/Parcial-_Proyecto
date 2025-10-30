@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from database import create_db_and_tables
+from routers import empleados
+
 
   # Cambiamos el parámetro 'app' a 'app_instance'
 @asynccontextmanager
@@ -18,7 +20,11 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+app.include_router(empleados.router)
+
 @app.get("/")
 def home():
     """Ruta raíz del sistema."""
     return {"mensaje": "🚀 API de Gestión de Proyectos activa y lista para trabajar"}
+
+
