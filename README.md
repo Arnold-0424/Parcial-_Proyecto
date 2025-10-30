@@ -63,6 +63,7 @@ Parcial_Proyecto/
 
 ---
 
+
 ## 📡 Endpoints principales
 
 ### 👨‍💼 Empleados
