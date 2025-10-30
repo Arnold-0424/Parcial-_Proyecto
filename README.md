@@ -80,23 +80,23 @@ Parcial_Proyecto/
 
 ### 🏗️ Proyectos
 
-| Método | Endpoint | Descripción |
-|:--------:|:-----------:|:-------------|
-| **POST** | `/proyectos/` | Crear proyecto |
-| **GET** | `/proyectos/` | Listar proyectos activos |
-| **GET** | `/proyectos/{proyecto_id}` | Consultar proyecto específico |
-| **PUT** | `/proyectos/{proyecto_id}` | Actualizar información |
+| Método     | Endpoint                   | Descripción                   |
+|:----------:|:--------------------------:|:------------------------------|
+| **POST**   | `/proyectos/`              | Crear proyecto                |
+| **GET**    | `/proyectos/`              | Listar proyectos activos      |
+| **GET**    | `/proyectos/{proyecto_id}` | Consultar proyecto específico |
+| **PUT**    | `/proyectos/{proyecto_id}` | Actualizar información        |
 | **DELETE** | `/proyectos/{proyecto_id}` | Marcar proyecto como inactivo |
 
 ---
 
 ### 🔗 Asignaciones
 
-| Método | Endpoint | Descripción |
-|:--------:|:-----------:|:-------------|
-| **POST** | `/asignaciones/empleado/{empleado_id}/proyecto/{proyecto_id}` | Asignar empleado a proyecto |
-| **GET** | `/asignaciones/proyecto/{proyecto_id}` | Ver empleados de un proyecto |
-| **GET** | `/asignaciones/empleado/{empleado_id}` | Ver proyectos de un empleado |
+| Método     | Endpoint                                                      | Descripción                     |
+|:----------:|:-------------------------------------------------------------:|:--------------------------------|
+| **POST**   | `/asignaciones/empleado/{empleado_id}/proyecto/{proyecto_id}` | Asignar empleado a proyecto     |
+| **GET**    | `/asignaciones/proyecto/{proyecto_id}`                        | Ver empleados de un proyecto    |
+| **GET**    | `/asignaciones/empleado/{empleado_id}`                        | Ver proyectos de un empleado    |
 | **DELETE** | `/asignaciones/empleado/{empleado_id}/proyecto/{proyecto_id}` | Desasignar empleado de proyecto |
 
 ---
