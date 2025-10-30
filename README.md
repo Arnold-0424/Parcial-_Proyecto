@@ -104,3 +104,10 @@ git clone https://github.com/tuusuario/gestion_proyectos_fastapi.git
 
 cd gestion_proyectos_fastapi
 
+python -m venv .venv
+
+.\.venv\Scripts\Activate
+
+"Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass"
+
+pip install -r requirements.txt
