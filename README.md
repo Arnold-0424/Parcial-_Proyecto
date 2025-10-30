@@ -59,8 +59,7 @@ Parcial_Proyecto/
 │
 └── utils/
     └── validaciones.py         # Validaciones personalizadas
-
-
+```
 ---
 
 
