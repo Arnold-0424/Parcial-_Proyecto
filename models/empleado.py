@@ -1,26 +1,24 @@
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional, List
+from typing import Optional, List, TYPE_CHECKING
 from models.relacion import ProyectoEmpleadoLink
 
+if TYPE_CHECKING:
+    from models.proyecto import Proyecto
+
 class Empleado(SQLModel, table=True):
-    """
-    Representa un empleado dentro del sistema de gestión de proyectos.
-    """
-
     id: Optional[int] = Field(default=None, primary_key=True)
-    nombre: str = Field(index=True, nullable=False, description="Nombre completo del empleado")
-    especialidad: str = Field(nullable=False, description="Área de especialización del empleado")
-    salario: float = Field(gt=0, description="Salario mensual en pesos colombianos")
-    estado: bool = Field(default=True, description="Activo o inactivo dentro de la empresa")
+    nombre: str
+    especialidad: str
+    salario: float
+    estado: bool = Field(default=True)
 
-    # Relaciones (se definirán más adelante)
-    proyectos: List["ProyectoEmpleadoLink"] = Relationship(back_populates="empleado")  # Relación N:M
+    # 🔗 Relación N:M con proyectos
+    proyectos_link: List["ProyectoEmpleadoLink"] = Relationship(back_populates="empleado")
 
-    def __repr__(self):
-        return f"<Empleado(nombre={self.nombre}, especialidad={self.especialidad}, salario={self.salario})>"
+    # 🔗 Relación 1:N (empleado como gerente de varios proyectos)
+    proyectos_gerenciados: List["Proyecto"] = Relationship(back_populates="gerente")
 
-
-# Modelo para crear empleados (entrada de datos)
+# ✅ Modelo para creación
 class EmpleadoCreate(SQLModel):
     nombre: str
     especialidad: str
@@ -39,7 +37,7 @@ class EmpleadoCreate(SQLModel):
     }
 
 
-# Modelo para lectura de empleados (respuesta de API)
+# ✅ Modelo para lectura
 class EmpleadoRead(SQLModel):
     id: int
     nombre: str

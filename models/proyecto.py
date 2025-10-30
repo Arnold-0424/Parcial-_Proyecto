@@ -1,5 +1,6 @@
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional, List, TYPE_CHECKING # noqa: F401
+from typing import Optional, List, TYPE_CHECKING
+from models.relacion import ProyectoEmpleadoLink
 
 if TYPE_CHECKING:
     from models.empleado import Empleado
@@ -12,8 +13,14 @@ class Proyecto(SQLModel, table=True):
     estado: bool = Field(default=True)
     gerente_id: Optional[int] = Field(default=None, foreign_key="empleado.id")
 
-    gerente: Optional["Empleado"] = Relationship(back_populates="proyectos")
+    # 🔗 Relación N:M con empleados
+    empleados_link: List["ProyectoEmpleadoLink"] = Relationship(back_populates="proyecto")
 
+    # 🔗 Relación 1:N con gerente
+    gerente: Optional["Empleado"] = Relationship(back_populates="proyectos_gerenciados")
+
+
+# ✅ Modelo para creación
 class ProyectoCreate(SQLModel):
     nombre: str
     descripcion: str
@@ -34,5 +41,3 @@ class ProyectoCreate(SQLModel):
             ]
         }
     }
-
-

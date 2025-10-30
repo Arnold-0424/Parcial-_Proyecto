@@ -3,15 +3,17 @@ from contextlib import asynccontextmanager
 from database import create_db_and_tables
 from routers import empleados, proyectos, asignaciones
 
-  # Cambiamos el parámetro 'app' a 'app_instance'
+
+# ✅ Configurar evento lifespan (inicio y cierre)
 @asynccontextmanager
-async def lifespan(app_instance: FastAPI):
+async def lifespan(app: FastAPI):
     print("🟢 Iniciando aplicación y creando tablas...")
     create_db_and_tables()
     yield
     print("🔴 Cerrando aplicación...")
 
-  # Creamos la app principal
+
+# ✅ Crear aplicación principal
 app = FastAPI(
     title="Sistema de Gestión de Proyectos",
     description="API para la administración de empleados y proyectos.",
@@ -19,12 +21,13 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# ✅ Incluir routers
 app.include_router(empleados.router)
 app.include_router(proyectos.router)
 app.include_router(asignaciones.router)
 
+
+# ✅ Endpoint raíz de prueba
 @app.get("/")
 def home():
     return {"mensaje": "🚀 API de Gestión de Proyectos activa y lista para trabajar"}
-
-
