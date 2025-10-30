@@ -26,6 +26,18 @@ class EmpleadoCreate(SQLModel):
     especialidad: str
     salario: float
 
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "nombre": "Laura Méndez",
+                    "especialidad": "Backend Developer",
+                    "salario": 3500000
+                }
+            ]
+        }
+    }
+
 
 # Modelo para lectura de empleados (respuesta de API)
 class EmpleadoRead(SQLModel):

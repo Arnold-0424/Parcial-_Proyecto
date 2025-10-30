@@ -25,7 +25,6 @@ app.include_router(asignaciones.router)
 
 @app.get("/")
 def home():
-    """Ruta raíz del sistema."""
     return {"mensaje": "🚀 API de Gestión de Proyectos activa y lista para trabajar"}
 
 
