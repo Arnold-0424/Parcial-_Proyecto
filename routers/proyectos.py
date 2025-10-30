@@ -5,22 +5,23 @@ from models.proyecto import Proyecto, ProyectoCreate
 from models.empleado import Empleado
 from models.relacion import ProyectoEmpleadoLink
 from database import get_session
+from utils.validaciones import (
+    validar_proyecto_unico,
+    validar_presupuesto_valido,
+    validar_gerente_activo)
 
 router = APIRouter(prefix="/proyectos", tags=["Proyectos"])
 
 
-
 #  CREAR PROYECTO
-@router.post("/", response_model=Proyecto, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=Proyecto)
 def crear_proyecto(data: ProyectoCreate, session: Session = Depends(get_session)):
+    validar_proyecto_unico(session, data.nombre)
+    validar_presupuesto_valido(data.presupuesto)
 
-    # Crea un nuevo proyecto, validando que el gerente exista.
-    # Verificar que el gerente exista
-    gerente = session.get(Empleado, data.gerente_id)
-    if not gerente:
-        raise HTTPException(status_code=404, detail="Gerente no encontrado")
+    if data.gerente_id:
+        validar_gerente_activo(session, data.gerente_id)
 
-    # Crear proyecto
     proyecto = Proyecto.model_validate(data)
     session.add(proyecto)
     session.commit()

@@ -2,16 +2,15 @@ from fastapi import APIRouter, HTTPException, Depends, status
 from sqlmodel import Session, select
 from models.empleado import Empleado, EmpleadoCreate
 from database import get_session
+from utils.validaciones import validar_empleado_unico, validar_salario_valido
 
 router = APIRouter(prefix="/empleados", tags=["Empleados"])
 
 
-@router.post("/", response_model=Empleado, status_code=status.HTTP_201_CREATED)
+@router.post("/", response_model=Empleado)
 def crear_empleado(data: EmpleadoCreate, session: Session = Depends(get_session)):
-
-    # Crea un nuevo empleado.
-    if not data.nombre.strip():
-        raise HTTPException(status_code=400, detail="El nombre no puede estar vacío")
+    validar_empleado_unico(session, data.nombre)
+    validar_salario_valido(data.salario)
 
     empleado = Empleado.model_validate(data)
     session.add(empleado)
