@@ -67,19 +67,21 @@ Parcial_Proyecto/
 ## 📡 Endpoints principales
 
 ### 👨‍💼 Empleados
-| Método | Endpoint | Descripción |
-|--------|-----------|-------------|
-| **POST** | `/empleados/` | Crear empleado |
-| **GET** | `/empleados/` | Listar empleados activos o filtrar por especialidad |
-| **GET** | `/empleados/buscar/{nombre}` | Buscar empleado por nombre |
-| **PUT** | `/empleados/{empleado_id}` | Actualizar empleado |
-| **DELETE** | `/empleados/{empleado_id}` | Marcar empleado como inactivo |
+
+| Método     | Endpoint                     | Descripción                                         |
+|:----------:|:----------------------------:|:----------------------------------------------------|
+| **POST**   | `/empleados/`                | Crear empleado                                      |
+| **GET**    | `/empleados/`                | Listar empleados activos o filtrar por especialidad |
+| **GET**    | `/empleados/buscar/{nombre}` | Buscar empleado por nombre                          |
+| **PUT**    | `/empleados/{empleado_id}`   | Actualizar empleado                                 |
+| **DELETE** | `/empleados/{empleado_id}`   | Marcar empleado como inactivo                       |
 
 ---
 
 ### 🏗️ Proyectos
+
 | Método | Endpoint | Descripción |
-|--------|-----------|-------------|
+|:--------:|:-----------:|:-------------|
 | **POST** | `/proyectos/` | Crear proyecto |
 | **GET** | `/proyectos/` | Listar proyectos activos |
 | **GET** | `/proyectos/{proyecto_id}` | Consultar proyecto específico |
@@ -89,8 +91,9 @@ Parcial_Proyecto/
 ---
 
 ### 🔗 Asignaciones
+
 | Método | Endpoint | Descripción |
-|--------|-----------|-------------|
+|:--------:|:-----------:|:-------------|
 | **POST** | `/asignaciones/empleado/{empleado_id}/proyecto/{proyecto_id}` | Asignar empleado a proyecto |
 | **GET** | `/asignaciones/proyecto/{proyecto_id}` | Ver empleados de un proyecto |
 | **GET** | `/asignaciones/empleado/{empleado_id}` | Ver proyectos de un empleado |
