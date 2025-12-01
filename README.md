@@ -106,7 +106,7 @@ cd gestion_proyectos_fastapi
 
 python -m venv .venv
 
-.\.venv\Scripts\Activate
+.\.venv\Scripts\Activate ___ .\.venv\Scripts\Activate
 
 "Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass"
 
